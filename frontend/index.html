@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JUSTICIA.ar - Sistema de Resolución Asistida</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="description" content="Sistema de adjudicación asistida por IA para casos civiles de menor cuantía en Argentina">
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="JUSTICIA.ar">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- iOS Icons -->
+    <link rel="apple-touch-icon" href="icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="96x96" href="icon-96x96.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="icon-128x128.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="384x384" href="icon-384x384.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="icon-512x512.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="icon-72x72.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icon-72x72.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .nav-tab {
+            flex: 1;
+            padding: 15px;
+            background: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .nav-tab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .nav-tab.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-success {
+            background: #48bb78;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #38a169;
+        }
+
+        .nivel-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .nivel-1 { background: #48bb78; color: white; }
+        .nivel-2 { background: #4299e1; color: white; }
+        .nivel-3 { background: #ed8936; color: white; }
+        .nivel-4 { background: #f56565; color: white; }
+
+        .caso-card {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s;
+        }
+
+        .caso-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateX(5px);
+        }
+
+        .caso-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .caso-expediente {
+            font-weight: 700;
+            color: #667eea;
+            font-size: 1.1em;
+        }
+
+        .caso-details {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .resultado-box {
+            background: #f0fff4;
+            border: 2px solid #48bb78;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .resultado-box h3 {
+            color: #22543d;
+            margin-bottom: 15px;
+        }
+
+        .fundamentacion {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.6;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .alert-success {
+            background: #c6f6d5;
+            border-left: 4px solid #48bb78;
+            color: #22543d;
+        }
+
+        .alert-error {
+            background: #fed7d7;
+            border-left: 4px solid #f56565;
+            color: #742a2a;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚖️ JUSTICIA.ar</h1>
+            <p>Sistema de Resolución Asistida por IA - Casos Civiles de Menor Cuantía</p>
+            <p style="font-size: 0.9em; margin-top: 10px; color: #999;">
+                Prototipo v0.1 - Córdoba, Argentina
+            </p>
+        </header>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showTab('nuevo-caso')">📝 Nuevo Caso</button>
+            <button class="nav-tab" onclick="showTab('casos-lista')">📋 Lista de Casos</button>
+            <button class="nav-tab" onclick="showTab('estadisticas')">📊 Estadísticas</button>
+            <button class="nav-tab" onclick="showTab('info')">ℹ️ Información</button>
+        </div>
+
+        <!-- TAB: Nuevo Caso -->
+        <div id="nuevo-caso" class="tab-content active">
+            <h2 style="margin-bottom: 20px; color: #333;">Ingresar Nuevo Caso</h2>
+            
+            <div id="alert-container"></div>
+
+            <form id="form-nuevo-caso">
+                <div class="form-group">
+                    <label for="tipo_caso">Tipo de Caso *</label>
+                    <select id="tipo_caso" name="tipo_caso" required>
+                        <option value="">Seleccionar...</option>
+                        <option value="daños_perjuicios">Daños y Perjuicios</option>
+                        <option value="incumplimiento_contractual">Incumplimiento Contractual</option>
+                        <option value="cobro_suma_dinero">Cobro de Suma de Dinero</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="demandado_nombre">Nombre del Demandado *</label>
+                    <input type="text" id="demandado_nombre" name="demandado_nombre" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="monto_reclamado">Monto Reclamado (ARS) *</label>
+                    <input type="number" id="monto_reclamado" name="monto_reclamado" min="0" step="0.01" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="descripcion_hechos">Descripción de los Hechos *</label>
+                    <textarea id="descripcion_hechos" name="descripcion_hechos" required 
+                              placeholder="Describa detalladamente los hechos que dan origen al reclamo..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="pruebas">Pruebas Disponibles</label>
+                    <textarea id="pruebas" name="pruebas" 
+                              placeholder="Describa las pruebas con que cuenta (documentos, testigos, pericias, etc.)"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Enviar Caso para Clasificación</button>
+            </form>
+
+            <div id="resultado-clasificacion" class="hidden resultado-box">
+                <h3>✅ Caso Ingresado y Clasificado</h3>
+                <div id="clasificacion-content"></div>
+            </div>
+        </div>
+
+        <!-- TAB: Lista de Casos -->
+        <div id="casos-lista" class="tab-content">
+            <h2 style="margin-bottom: 20px; color: #333;">Lista de Casos</h2>
+            
+            <div style="margin-bottom: 20px;">
+                <label style="margin-right: 10px;">Filtrar por nivel:</label>
+                <button class="btn" onclick="filtrarCasos('')">Todos</button>
+                <button class="btn" onclick="filtrarCasos('1')">Nivel 1</button>
+                <button class="btn" onclick="filtrarCasos('2')">Nivel 2</button>
+                <button class="btn" onclick="filtrarCasos('3')">Nivel 3</button>
+                <button class="btn" onclick="filtrarCasos('4')">Nivel 4</button>
+            </div>
+
+            <div id="casos-container">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p style="margin-top: 15px;">Cargando casos...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB: Estadísticas -->
+        <div id="estadisticas" class="tab-content">
+            <h2 style="margin-bottom: 20px; color: #333;">Estadísticas del Sistema</h2>
+            <div id="stats-container">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p style="margin-top: 15px;">Cargando estadísticas...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB: Información -->
+        <div id="info" class="tab-content">
+            <h2 style="margin-bottom: 20px; color: #333;">Acerca del Sistema</h2>
+            
+            <div style="line-height: 1.8; color: #444;">
+                <h3 style="color: #667eea; margin-top: 20px;">¿Qué es JUSTICIA.ar?</h3>
+                <p>
+                    Sistema experimental de resolución asistida por IA para casos civiles de menor cuantía 
+                    en la provincia de Córdoba, Argentina.
+                </p>
+
+                <h3 style="color: #667eea; margin-top: 20px;">Modelo de 4 Niveles</h3>
+                
+                <div style="margin: 20px 0;">
+                    <div style="background: #f7fafc; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                        <span class="nivel-badge nivel-1">Nivel 1</span>
+                        <strong style="margin-left: 10px;">Casos Rutinarios</strong>
+                        <p style="margin-top: 10px; color: #666;">
+                            Resolución automática por IA. Hechos claros, prueba fehaciente, 
+                            jurisprudencia uniforme. Ejemplo: cobro ejecutivo de pagaré.
+                        </p>
+                    </div>
+
+                    <div style="background: #f7fafc; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                        <span class="nivel-badge nivel-2">Nivel 2</span>
+                        <strong style="margin-left: 10px;">Casos Complejos</strong>
+                        <p style="margin-top: 10px; color: #666;">
+                            IA sugiere solución, funcionario judicial revisa y aprueba. 
+                            Cierta complejidad fáctica o jurídica pero manejable.
+                        </p>
+                    </div>
+
+                    <div style="background: #f7fafc; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                        <span class="nivel-badge nivel-3">Nivel 3</span>
+                        <strong style="margin-left: 10px;">Casos Difíciles</strong>
+                        <p style="margin-top: 10px; color: #666;">
+                            Deliberación humana completa. IA genera múltiples perspectivas argumentales.
+                            Cuestiones complejas que requieren juicio jurídico sofisticado.
+                        </p>
+                    </div>
+
+                    <div style="background: #f7fafc; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                        <span class="nivel-badge nivel-4">Nivel 4</span>
+                        <strong style="margin-left: 10px;">Casos Constitucionales</strong>
+                        <p style="margin-top: 10px; color: #666;">
+                            Deliberación ampliada. Involucran derechos fundamentales o cuestiones constitucionales.
+                            Requieren máximo nivel de garantías procesales.
+                        </p>
+                    </div>
+                </div>
+
+                <h3 style="color: #667eea; margin-top: 20px;">Marco Legal</h3>
+                <p>
+                    El sistema aplica el Código Civil y Comercial de la Nación Argentina (Ley 26.994)
+                    y el Código Procesal Civil y Comercial de la Provincia de Córdoba (Ley 8.465).
+                </p>
+
+                <h3 style="color: #667eea; margin-top: 20px;">Alcance</h3>
+                <p>
+                    <strong>Este es un prototipo experimental</strong> con fines de investigación y demostración.
+                    No sustituye el asesoramiento legal profesional ni tiene valor vinculante.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Detectar automáticamente la URL de la API
+        const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+            ? 'http://localhost:5000/api'  // Desarrollo local
+            : '/api';  // Producción (mismo servidor)
+
+        // Navegación entre tabs
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-tab').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+
+            // Cargar datos cuando se activa el tab
+            if (tabId === 'casos-lista') {
+                cargarCasos();
+            } else if (tabId === 'estadisticas') {
+                cargarEstadisticas();
+            }
+        }
+
+        // Formulario nuevo caso
+        document.getElementById('form-nuevo-caso').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const data = {
+                tipo_caso: formData.get('tipo_caso'),
+                actor_id: 4, // Usuario de ejemplo
+                demandado_nombre: formData.get('demandado_nombre'),
+                monto_reclamado: parseFloat(formData.get('monto_reclamado')),
+                descripcion_hechos: formData.get('descripcion_hechos'),
+                pruebas: formData.get('pruebas')
+            };
+
+            try {
+                mostrarAlerta('Procesando caso...', 'info');
+                
+                const response = await fetch(`${API_BASE}/casos`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                if (!response.ok) throw new Error('Error al procesar el caso');
+
+                const result = await response.json();
+                
+                mostrarAlerta('¡Caso ingresado exitosamente!', 'success');
+                mostrarResultadoClasificacion(result);
+                
+                // Limpiar formulario
+                e.target.reset();
+
+            } catch (error) {
+                mostrarAlerta('Error: ' + error.message, 'error');
+            }
+        });
+
+        function mostrarResultadoClasificacion(result) {
+            const container = document.getElementById('resultado-clasificacion');
+            const content = document.getElementById('clasificacion-content');
+            
+            const nivelClass = `nivel-${result.nivel}`;
+            
+            content.innerHTML = `
+                <p><strong>Número de Expediente:</strong> ${result.numero_expediente}</p>
+                <p><strong>Clasificación:</strong> <span class="nivel-badge ${nivelClass}">Nivel ${result.nivel}</span></p>
+                <p><strong>Confianza:</strong> ${(result.confianza * 100).toFixed(1)}%</p>
+                <div style="margin-top: 15px;">
+                    <strong>Justificación:</strong>
+                    <div class="fundamentacion" style="margin-top: 10px;">
+${result.justificacion}
+                    </div>
+                </div>
+                <button class="btn btn-success" onclick="generarDecision(${result.caso_id})" style="margin-top: 15px;">
+                    Generar Decisión
+                </button>
+            `;
+            
+            container.classList.remove('hidden');
+            container.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        async function generarDecision(casoId) {
+            try {
+                mostrarAlerta('Generando decisión...', 'info');
+                
+                const response = await fetch(`${API_BASE}/casos/${casoId}/decidir`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+
+                if (!response.ok) throw new Error('Error al generar decisión');
+
+                const result = await response.json();
+                
+                mostrarAlerta('¡Decisión generada exitosamente!', 'success');
+                mostrarDecisionGenerada(result.decision);
+
+            } catch (error) {
+                mostrarAlerta('Error: ' + error.message, 'error');
+            }
+        }
+
+        function mostrarDecisionGenerada(decision) {
+            const content = document.getElementById('clasificacion-content');
+            
+            content.innerHTML += `
+                <div style="margin-top: 30px; border-top: 2px solid #e2e8f0; padding-top: 20px;">
+                    <h3 style="color: #22543d;">📜 Decisión Generada</h3>
+                    <p><strong>Tipo:</strong> ${decision.tipo_decision}</p>
+                    <p><strong>Resultado:</strong> ${decision.resultado}</p>
+                    ${decision.monto_otorgado ? `<p><strong>Monto:</strong> $${decision.monto_otorgado.toLocaleString('es-AR')}</p>` : ''}
+                    <div style="margin-top: 15px;">
+                        <strong>Fundamentación:</strong>
+                        <div class="fundamentacion" style="margin-top: 10px;">
+${decision.fundamentacion}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        async function cargarCasos(nivel = '') {
+            try {
+                const url = nivel ? `${API_BASE}/casos?nivel=${nivel}` : `${API_BASE}/casos`;
+                const response = await fetch(url);
+                
+                if (!response.ok) throw new Error('Error al cargar casos');
+                
+                const data = await response.json();
+                mostrarCasos(data.casos);
+
+            } catch (error) {
+                document.getElementById('casos-container').innerHTML = 
+                    `<div class="alert alert-error">Error al cargar casos: ${error.message}</div>`;
+            }
+        }
+
+        function mostrarCasos(casos) {
+            const container = document.getElementById('casos-container');
+            
+            if (casos.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #666;">No hay casos para mostrar.</p>';
+                return;
+            }
+
+            container.innerHTML = casos.map(caso => `
+                <div class="caso-card">
+                    <div class="caso-header">
+                        <span class="caso-expediente">${caso.numero_expediente}</span>
+                        <span class="nivel-badge nivel-${caso.nivel_clasificacion}">Nivel ${caso.nivel_clasificacion}</span>
+                    </div>
+                    <div class="caso-details">
+                        <p><strong>Actor:</strong> ${caso.actor_nombre}</p>
+                        <p><strong>Demandado:</strong> ${caso.demandado_nombre}</p>
+                        <p><strong>Tipo:</strong> ${formatTipoCaso(caso.tipo_caso)}</p>
+                        <p><strong>Monto:</strong> $${caso.monto_reclamado.toLocaleString('es-AR')}</p>
+                        <p><strong>Estado:</strong> ${formatEstado(caso.estado)}</p>
+                        <p><strong>Fecha:</strong> ${formatFecha(caso.fecha_ingreso)}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function cargarEstadisticas() {
+            try {
+                const response = await fetch(`${API_BASE}/estadisticas`);
+                
+                if (!response.ok) throw new Error('Error al cargar estadísticas');
+                
+                const data = await response.json();
+                mostrarEstadisticas(data);
+
+            } catch (error) {
+                document.getElementById('stats-container').innerHTML = 
+                    `<div class="alert alert-error">Error al cargar estadísticas: ${error.message}</div>`;
+            }
+        }
+
+        function mostrarEstadisticas(stats) {
+            const container = document.getElementById('stats-container');
+            
+            const totalCasos = Object.values(stats.casos_por_nivel).reduce((a, b) => a + b, 0);
+            
+            container.innerHTML = `
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">${totalCasos}</div>
+                        <div class="stat-label">Total de Casos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${stats.casos_por_nivel[1] || 0}</div>
+                        <div class="stat-label">Nivel 1 (Automático)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${stats.casos_por_nivel[2] || 0}</div>
+                        <div class="stat-label">Nivel 2 (Asistido)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${stats.casos_por_nivel[3] || 0}</div>
+                        <div class="stat-label">Nivel 3 (Humano)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${stats.casos_por_nivel[4] || 0}</div>
+                        <div class="stat-label">Nivel 4 (Constitucional)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${stats.resueltos}</div>
+                        <div class="stat-label">Casos Resueltos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${stats.pendientes}</div>
+                        <div class="stat-label">Casos Pendientes</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function filtrarCasos(nivel) {
+            cargarCasos(nivel);
+        }
+
+        function formatTipoCaso(tipo) {
+            const tipos = {
+                'daños_perjuicios': 'Daños y Perjuicios',
+                'incumplimiento_contractual': 'Incumplimiento Contractual',
+                'cobro_suma_dinero': 'Cobro de Suma de Dinero'
+            };
+            return tipos[tipo] || tipo;
+        }
+
+        function formatEstado(estado) {
+            const estados = {
+                'ingresado': 'Ingresado',
+                'clasificado': 'Clasificado',
+                'en_revision': 'En Revisión',
+                'resuelto': 'Resuelto',
+                'apelado': 'Apelado'
+            };
+            return estados[estado] || estado;
+        }
+
+        function formatFecha(fecha) {
+            return new Date(fecha).toLocaleDateString('es-AR', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        function mostrarAlerta(mensaje, tipo) {
+            const alertContainer = document.getElementById('alert-container');
+            const alertClass = tipo === 'success' ? 'alert-success' : tipo === 'error' ? 'alert-error' : '';
+            
+            alertContainer.innerHTML = `
+                <div class="alert ${alertClass}">
+                    ${mensaje}
+                </div>
+            `;
+            
+            setTimeout(() => {
+                alertContainer.innerHTML = '';
+            }, 5000);
+        }
+
+        // Cargar casos inicialmente si estamos en ese tab
+        if (document.getElementById('casos-lista').classList.contains('active')) {
+            cargarCasos();
+        }
+    </script>
+
+    <!-- PWA Install & Service Worker Registration -->
+    <script>
+        // Registrar Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then((registration) => {
+                        console.log('✅ Service Worker registrado:', registration.scope);
+                    })
+                    .catch((error) => {
+                        console.log('❌ Error registrando Service Worker:', error);
+                    });
+            });
+        }
+
+        // Prompt de instalación de PWA
+        let deferredPrompt;
+        const installContainer = document.createElement('div');
+        installContainer.id = 'pwa-install-prompt';
+        installContainer.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            z-index: 10000;
+            display: none;
+            max-width: 300px;
+        `;
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            
+            installContainer.innerHTML = `
+                <p style="margin: 0 0 10px 0; font-weight: 600; color: #333;">
+                    📱 Instalar JUSTICIA.ar
+                </p>
+                <p style="margin: 0 0 15px 0; font-size: 0.9em; color: #666;">
+                    Instala la app en tu dispositivo para acceso rápido
+                </p>
+                <div style="display: flex; gap: 10px;">
+                    <button id="install-btn" style="flex: 1; padding: 10px; background: #667eea; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">
+                        Instalar
+                    </button>
+                    <button id="dismiss-btn" style="padding: 10px; background: #e0e0e0; color: #666; border: none; border-radius: 5px; cursor: pointer;">
+                        Ahora no
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(installContainer);
+            installContainer.style.display = 'block';
+
+            document.getElementById('install-btn').addEventListener('click', async () => {
+                installContainer.style.display = 'none';
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                console.log(`Usuario ${outcome === 'accepted' ? 'aceptó' : 'rechazó'} la instalación`);
+                deferredPrompt = null;
+            });
+
+            document.getElementById('dismiss-btn').addEventListener('click', () => {
+                installContainer.style.display = 'none';
+            });
+        });
+
+        // Detectar si ya está instalada
+        window.addEventListener('appinstalled', () => {
+            console.log('✅ PWA instalada exitosamente');
+            if (installContainer) {
+                installContainer.style.display = 'none';
+            }
+        });
+
+        // Mensaje para iOS
+        function isIOS() {
+            return /iPhone|iPad|iPod/.test(navigator.userAgent) && !window.MSStream;
+        }
+
+        if (isIOS() && !window.navigator.standalone) {
+            // Crear mensaje de instalación para iOS
+            const iosInstallMsg = document.createElement('div');
+            iosInstallMsg.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                left: 20px;
+                right: 20px;
+                background: white;
+                padding: 15px;
+                border-radius: 10px;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+                z-index: 10000;
+                display: none;
+                text-align: center;
+            `;
+            iosInstallMsg.innerHTML = `
+                <p style="margin: 0 0 10px 0; font-weight: 600; color: #333;">
+                    📱 Instalar en iOS
+                </p>
+                <p style="margin: 0 0 10px 0; font-size: 0.9em; color: #666;">
+                    Toca el botón de compartir <span style="font-size: 1.2em;">⬆️</span> y luego "Agregar a pantalla de inicio"
+                </p>
+                <button onclick="this.parentElement.style.display='none'" style="padding: 8px 16px; background: #667eea; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                    Entendido
+                </button>
+            `;
+            document.body.appendChild(iosInstallMsg);
+            
+            // Mostrar después de 3 segundos
+            setTimeout(() => {
+                iosInstallMsg.style.display = 'block';
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
