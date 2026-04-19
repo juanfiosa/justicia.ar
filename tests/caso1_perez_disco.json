@@ -1,0 +1,29 @@
+{
+  "vistos": "",
+  "considerandos": "",
+  "resuelvo": "",
+  "texto_completo": "ERROR al llamar a Gemini API: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}\n\n[Se generará una sentencia de demostración]",
+  "nivel_complejidad": 1,
+  "confianza": 0.95,
+  "advertencias": [],
+  "notas_para_juez": "Proyecto de sentencia generado por el sistema JUSTICIA ARGENTINA. Este documento es un BORRADOR para revisión del magistrado.",
+  "precedentes_usados": [],
+  "clasificacion_automatica": {
+    "nivel": 1,
+    "justificacion": "Caso rutinario: norma clara, jurisprudencia pacífica.",
+    "indicadores": [
+      "subsuncion directa"
+    ],
+    "metodo": "heuristico",
+    "error": "Unterminated string starting at: line 3 column 20 (char 35)"
+  },
+  "verificacion": {
+    "total_citas": 0,
+    "verificadas": 0,
+    "no_encontradas": [],
+    "derogadas": [],
+    "score_confianza": 1.0,
+    "congruente": true,
+    "advertencias": []
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C \"C:/Users/Juan/Documents/GitHub/justicia.ar\" remote -v)",
+      "Bash(git -C \"C:/Users/Juan/Documents/GitHub/justicia.ar\" status --short)",
+      "Bash(git -C \"C:/Users/Juan/Documents/GitHub/justicia.ar\" log --oneline -3)"
+    ]
+  }
+}

@@ -1,0 +1,41 @@
+# Datos locales grandes
+datos/chromadb/
+datos/jurisprudencia_saij/
+datos/sentencias_tsjcaba/
+datos/textos_provinciales/
+datos/infoleg/
+datos/normalizacion/
+datos/*.csv
+datos/*.json
+
+# Logs
+logs/
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+.Python
+*.egg-info/
+dist/
+build/
+
+# Entornos virtuales
+venv/
+env/
+.venv/
+
+# Variables de entorno
+.env
+.env.*
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Checkpoints de indexado
+checkpoint_*.json

@@ -1,0 +1,13 @@
+{
+  "fecha": "2026-03-25T13:42:27.018442",
+  "total_evaluados": 100,
+  "errores": 0,
+  "en_demo": 0,
+  "f1_promedio_normas": 0.081,
+  "confianza_promedio": 0.926,
+  "distribucion_niveles": {
+    "2": 12,
+    "1": 88
+  },
+  "nota_metodologica": "F1 mide coincidencia de normas citadas entre sentencia generada y fallo real. Casos tomados desde registro 20.001 del SAIJ (no indexados → sin data leakage de RAG). Gemini puede conocer los fallos por entrenamiento general, por lo que F1 alto puede reflejar tanto conocimiento previo como buen razonamiento. Para evaluación ciega pura usar casos post-2025 evaluados por jueces."
+}

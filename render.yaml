@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: justicia-argentina
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: bash render_start.sh
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: RENDER
+        value: "true"
+      - key: PYTHONPATH
+        value: /opt/render/project/src:/opt/render/project/src/src
+      - key: PYTHON_VERSION
+        value: "3.11.11"

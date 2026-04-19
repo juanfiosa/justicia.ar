@@ -1,0 +1,73 @@
+{
+  "caso": "CASO 2 — Vizzoti c/ AMSA (N2 Dificil)",
+  "input": {
+    "caratula": "Vizzoti, Carlos Alberto c/ AMSA S.A. s/ despido",
+    "expediente": "V.967.XXXVIII",
+    "rama": "laboral",
+    "tipo_proceso": "ordinario",
+    "tribunal": "Corte Suprema de Justicia de la Nacion",
+    "hechos_probados": "Vizzoti fue despedido sin causa por AMSA S.A. tras 26 anios de antiguedad. Su mejor remuneracion mensual normal y habitual era de $11.465. El promedio de las remuneraciones del convenio colectivo aplicable era de $1.000. Aplicando el tope del art. 245 LCT (la base no puede superar el 67% del promedio del convenio, es decir $670), la indemnizacion calculada resultaba un 83% inferior a la que corresponderia si se usara la remuneracion real como base.",
+    "partes": [
+      {
+        "nombre": "Vizzoti, Carlos Alberto",
+        "rol": "actor",
+        "pretension": "Indemnizacion calculada sobre su remuneracion real de $11.465 sin aplicacion del tope del art. 245 LCT, o subsidiariamente que el tope sea declarado inconstitucional cuando reduzca la base en mas del 33%",
+        "fundamentos_juridicos": "Art. 14 bis CN (proteccion contra el despido arbitrario). Art. 17 CN (no confiscatoriedad). Art. 28 CN (razonabilidad). Arts. 7 y 8 PIDESC.",
+        "jurisprudencia_citada": "Bercaitz CSJN Fallos 289:430; doctrina de razonabilidad"
+      },
+      {
+        "nombre": "AMSA S.A.",
+        "rol": "demandado",
+        "pretension": "Rechazo. El tope del art. 245 LCT es valido",
+        "fundamentos_juridicos": "El art. 245 LCT es norma valida sancionada por el Congreso. El tope busca equiparar indemnizaciones entre trabajadores. El legislador puede reglamentar derechos del art. 14 bis mientras no los suprima.",
+        "jurisprudencia_citada": "Fernandez Arias Fallos 247:646; doctrina de deferencia legislativa"
+      }
+    ],
+    "cuestiones_a_resolver": [
+      "Es constitucional el tope del art. 245 LCT cuando reduce la base indemnizatoria en mas del 33% respecto de la remuneracion real?",
+      "Cual es el umbral de razonabilidad por debajo del cual la reglamentacion del derecho a la proteccion contra el despido arbitrario deviene inconstitucional?"
+    ]
+  },
+  "output": {
+    "vistos": "",
+    "considerandos": "",
+    "resuelvo": "",
+    "texto_completo": "ERROR al llamar a Gemini API: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash-lite\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-lite\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-lite\\nPlease retry in 36.77085709s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '36s'}]}}\n\n[Se generará una sentencia de demostración]",
+    "nivel_complejidad": 2,
+    "confianza": 0.75,
+    "advertencias": [
+      "Caso difícil: se recomienda revisión minuciosa de la fundamentación interpretativa."
+    ],
+    "notas_para_juez": "Proyecto de sentencia generado por el sistema JUSTICIA ARGENTINA. Este documento es un BORRADOR para revisión del magistrado.",
+    "precedentes_usados": [],
+    "clasificacion_automatica": {
+      "nivel": 2,
+      "justificacion": "Se detectaron problemas interpretativos: eximentes, cuantificación discutida o interpretación normativa.",
+      "indicadores": [
+        "subsidiariamente"
+      ],
+      "metodo": "heuristico",
+      "error": "Expecting value: line 3 column 19 (char 34)"
+    },
+    "verificacion": {
+      "total_citas": 0,
+      "verificadas": 0,
+      "no_encontradas": [],
+      "derogadas": [],
+      "score_confianza": 1.0,
+      "congruente": true,
+      "advertencias": []
+    }
+  },
+  "evaluacion": {
+    "estructura": 0.0,
+    "f1_normas": 0,
+    "precision_normas": 0,
+    "recall_normas": 0.0,
+    "normas_generadas": [],
+    "decision_correcta": false,
+    "extension": 0.0,
+    "nivel": 2,
+    "confianza": 0.75
+  }
+}

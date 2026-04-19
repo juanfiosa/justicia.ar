@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<!--[if IE 9]> <html lang="es" class="ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="es"  > <!--<![endif]-->
+  <head>
+    <meta charset="utf-8" />
+      <meta name="csrf_field_name" content="_csrf_token" />
+      <meta name="_csrf_token" content="IjhjMGM0N2ZiNTViNDgzMDhlMWVhNzIyOWU1NjE1ODVhZDIyNzJiYTYi.acFZUw.jIomEgvBd55tVhaNFWizkrulapk" />
+
+      <meta name="generator" content="ckan 2.11.0" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error 404 - CKAN</title>
+
+    
+    <link rel="shortcut icon" href="/base/images/ckan.ico" />
+    
+  
+      
+      
+      
+    
+  
+
+
+    
+    <link href="/webassets/base/757e28ef_main.css" rel="stylesheet"/>
+<link href="/webassets/ckanext-activity/8dd77216_activity.css" rel="stylesheet"/>
+  <style>
+        /* HEADER */
+
+header.masthead {
+
+	background: #FFF;
+
+}
+
+header.masthead div.main-navbar ul li a {
+
+	color: #747273;
+
+	text-transform: uppercase;
+
+}
+
+header.masthead div.main-navbar ul li a:hover {
+
+	background-color: transparent;
+
+	text-decoration: underline;
+
+}
+
+/* HERO */
+
+div.hero { 
+
+	background: #08223D !important;
+
+}
+
+div.hero .module-search {
+
+	color: #fff;
+
+	padding: 0px;
+
+	border: none;
+
+}
+
+div.hero .module-search .search-form {
+
+	background-color: transparent;
+
+	border-bottom: none;
+
+	max-width: 700px;
+
+	margin: 0 auto;
+
+	text-align: center;
+
+}
+
+div.hero .module-search .search-form h3 {
+
+	font-weight: 500;
+
+	font-size: 1.6rem;
+
+	margin-bottom: 20px;
+
+}
+
+/* MAIN */
+
+.module-feeds {
+
+	padding-bottom: 100px !important;
+
+}
+
+.homepage .module-feeds {
+
+	background: #f8f8f8;
+
+}
+
+/* MAIN ICONS */
+
+.main-icons {
+
+	padding: 50px;
+
+}
+
+.main-icons > div {
+
+	text-align: center;
+
+}
+
+.main-icons > div .rounded-div {
+
+    width: fit-content; 
+
+    height: fit-content;
+
+    margin: 0 auto;
+
+    padding: 20px;
+
+    border-radius: 50%;
+
+    background-color: #FFF;
+
+    margin-bottom: 5px;
+
+}
+
+.main-icons > div .rounded-div img {
+
+    width: 48px;
+
+    height: 48px;
+
+}
+
+.main-icons a {
+
+    color: #747273;
+
+}
+
+.module-heading {
+
+	display: none;
+
+}
+
+.box-featured {
+
+	box-shadow: none;
+
+	border-left: 4px solid #08223D;
+
+	border-radius: 0;
+
+}
+
+.box-featured ul div,
+
+.box-featured ul a {
+
+	color: #747273;
+
+}
+
+.destacados-header {
+
+	padding-bottom: 10px;
+
+	display: flex;
+
+	flex-wrap: nowrap;
+
+	align-items: baseline;
+
+}
+
+.destacados-header > h3 {
+
+	white-space: nowrap;
+
+	color: #747273;
+
+}
+
+.destacados-header > div {
+
+	border-bottom: 1px solid #747273;
+
+	width: 100%;
+
+	margin-left: 10px;	
+
+}
+
+/* FOOTER */
+
+footer {
+
+	background: #454545;
+
+	color: #FFF;
+
+	padding: 30px;
+
+}
+
+footer a {
+
+	color: #FFF;
+
+	text-decoration: underline;
+
+}
+
+h2.media-heading {
+
+	background: #08223D !important;
+
+	color: #DCD6CB !important;
+
+}
+      </style>
+    
+  <link rel="stylesheet" href="/tsjbaires_theme.css" />
+
+    
+
+  </head>
+
+  
+  <body data-site-root="https://ckanprodtsjbaires.mole.guru/" data-locale-root="https://ckanprodtsjbaires.mole.guru/" >
+
+    
+    <div class="visually-hidden-focusable"><a href="#content">Skip to main content</a></div>
+  
+
+  
+    
+
+ 
+<div class="account-masthead">
+  <div class="container">
+     
+    <nav class="account not-authed" aria-label="Cuenta">
+      <ul class="list-unstyled">
+        
+        <li><a href="/user/login">Iniciar Sesión</a></li>
+         
+      </ul>
+    </nav>
+     
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="container">
+      
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <hgroup class="header-image navbar-left">
+
+      
+      
+      <a class="logo" href="/">
+        <img src="/uploads/admin/2024-09-29-143914.927043logo-TSJ-header.png" alt="CKAN"
+          title="CKAN" />
+      </a>
+      
+      
+
+       </hgroup>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-navigation-toggle"
+        aria-controls="main-navigation-toggle" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="fa fa-bars text-white"></span>
+      </button>
+
+      <div class="main-navbar collapse navbar-collapse" id="main-navigation-toggle">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          
+            
+              
+              
+
+              <li><a href="/dataset/">Conjuntos de datos</a></li><li><a href="/organization/">Organizaciones</a></li><li><a href="/group/">Grupos</a></li><li><a href="/about">Acerca de</a></li>
+            
+          </ul>
+
+      
+      
+          <form class="d-flex site-search" action="/dataset/" method="get">
+              <label class="d-none" for="field-sitewide-search">Buscar conjuntos de datos...</label>
+              <input id="field-sitewide-search" class="form-control me-2"  type="text" name="q" placeholder="Búsqueda" aria-label="Buscar conjuntos de datos..."/>
+              <button class="btn" type="submit" aria-label="Enviar"><i class="fa fa-search"></i></button>
+          </form>
+      
+      </div>
+    </nav>
+  </div>
+</header>
+
+  
+    <div class="main">
+      <div id="content" class="container">
+        
+          
+  
+  
+
+
+          
+            <div class="toolbar" role="navigation" aria-label="Miga de pan">
+              
+
+            </div>
+          
+
+          <div class="row wrapper no-nav">
+            
+            
+            
+
+            
+
+            
+  <article class="module">
+    <div class="module-content">
+      
+      <h1>404 Not Found</h1>
+      
+      Recurso no encontrado
+    </div>
+    
+    
+  
+  </article>
+
+          </div>
+        
+      </div>
+    </div>
+  
+    <footer>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<p>Tribunal Superior de Justicia de la Ciudad Autónoma de Buenos Aires<br>
+				Cerrito 760 | C1O10AAP - CABA | 4370-8500 interno 8031 <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="157174617a6674777c7067617a665561667f77746770663b727a773b7467">[email&#160;protected]</a></p>
+			</div>
+			<div class="col-md-4 attribution">
+				
+					<p><strong>Gestionado con </strong> <a class="hide-text ckan-footer-logo" href="http://ckan.org">CKAN</a></p>
+				
+			</div>
+		</div>
+	</div>
+</footer>
+  
+  
+  
+  
+  
+    
+
+  
+
+    
+    <link href="/webassets/vendor/f3b8236b_select2.css" rel="stylesheet"/>
+<link href="/webassets/vendor/53df638c_fontawesome.css" rel="stylesheet"/>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="/webassets/vendor/240e5086_jquery.js" type="text/javascript"></script>
+<script src="/webassets/vendor/90dbb6bf_vendor.js" type="text/javascript"></script>
+<script src="/webassets/vendor/6d1ad7e6_bootstrap.js" type="text/javascript"></script>
+<script src="/webassets/vendor/529a0eb7_htmx.js" type="text/javascript"></script>
+<script src="/webassets/base/a65ea3a0_main.js" type="text/javascript"></script>
+<script src="/webassets/base/b1def42f_ckan.js" type="text/javascript"></script>
+<script src="/webassets/activity/0fdb5ee0_activity.js" type="text/javascript"></script>
+  </body>
+</html>

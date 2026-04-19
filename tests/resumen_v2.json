@@ -1,0 +1,16 @@
+{
+  "fecha": "2026-03-25T14:33:07.114228",
+  "total": 0,
+  "errores": 100,
+  "demo": 0,
+  "score_estructural_promedio": 0,
+  "f1_normativo_promedio": 0,
+  "f1_casos_con_normas": 0,
+  "confianza_promedio": 0,
+  "distribucion_niveles": {
+    "1": 0,
+    "2": 0,
+    "3": 0
+  },
+  "dimensiones_promedio": {}
+}
